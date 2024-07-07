@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: "Roboto Mono", monospace;
+}
+
+body {
+    background-color: #aeaeae;
+}
+
+.container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-caixa {
+    height: 600px;
+    width: 550px;
+    background-color: #52596b;
+    border: 2px solid #646672;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.caixa-sessao-tela {
+    height: 400px;
+    width: 520px;
+    border-radius: 5px;
+    background-color: #353944;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.caixa-sessao-teclado {
+    height: 160px;
+    width: 520px;
+    border-radius: 5px;
+    background-color: #353944;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.sessao-tela-botoes {
+    height: 310px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.sessao-tela-botoes > div:nth-child(n) {
+    height: 100%;
+    width: 55px;
+}
+
+.sessao-tela-botoes > div:nth-child(1) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.sessao-tela-botoes > div:nth-child(1) > button:nth-child(n) {
+    height: 40px;
+    width: 100%;
+    background-color: #d8dad9;
+    border-radius: 5px;
+    /**box-shadow: 0px 0px 0px 1px rgba(87,87,87,1);*/
+    cursor: pointer;
+}
+
+.sessao-tela-botoes > div:nth-child(2) {
+    width: 380px;
+    border: 3px solid #141615;
+    border-radius: 5px;
+    background-color: #8dd7f2;
+}
+
+.sessao-tela-botoes > div:nth-child(3) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.sessao-tela-botoes > div:nth-child(3) > button:nth-child(n) {
+    height: 40px;
+    width: 100%;
+    background-color: #d8dad9;
+    border-radius: 5px;
+    /**box-shadow: 0px 0px 0px 1px rgba(87,87,87,1);*/
+    cursor: pointer;
+}
+
+
+.sessao-tela-boca-caixa {
+    height: 20px;
+    width: 300px;
+    background-color: #141615;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sessao-tela-boca-caixa > div:nth-child(1) {
+    height: 10px;
+    width: 200px;
+    border-radius: 5px;
+    background-color: #43af49;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sessao-tela-boca-caixa > div:nth-child(1) > div:nth-child(1) {
+    height: 1px;
+    width: 100px;
+    background-color: #141615;
+    border-radius: 5px;
+}
+
+.caixa-sessao-teclado > div:nth-child(1) {
+    height: 150px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1px;
+}
+
+.caixa-sessao-teclado > div:nth-child(1) > div:nth-child(n) > button:nth-child(4) {
+    margin-left: 15px;
+}
+
+.button {
+    height: 35px;
+    width: 60px;
+    margin-left: 3px;
+    margin-right: 3px;
+    background-color: #d8dad9;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 20px;
+    color: #141615;
+    /**box-shadow: 0px 0px 0px 1px rgba(87,87,87,1);*/
+    cursor: pointer;
+}
+
+.button:active {
+    scale: 0.95;
+}
+
+#button-confirma {
+    background-color: #35b44d;
+    font-size: 14px;
+}
+
+#button-cancela {
+    background-color: #ec1d23;
+    font-size: 14px;
+}
+
+#button-corrige {
+    background-color: #fcd402;
+    font-size: 14px;
+}
+
+.oculto {
+    color: transparent;
+}
