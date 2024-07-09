@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
 
 * {
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-    font-family: "Roboto Mono", monospace;
 }
 
 body {
@@ -163,6 +163,7 @@ body {
     color: #141615;
     /**box-shadow: 0px 0px 0px 1px rgba(87,87,87,1);*/
     cursor: pointer;
+    font-family: "Roboto Mono", monospace;
 }
 
 .button:active {
@@ -187,3 +188,133 @@ body {
 .oculto {
     color: transparent;
 }
+
+/** Configurações de Tela */
+#tela-caixa {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    word-break: break-all;
+    color: #141615c9;
+    font-weight: bolder;
+    font-family: "Share Tech Mono", monospace;
+    user-select:none;  
+}
+
+#tela-caixa-vazia {
+    width: 98%;
+    height: 98%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+}
+
+/** Tela de Operações */
+#tela-caixa-operacoes {
+    width: 98%;
+    height: 98%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+#tela-caixa-operacoes > h1 {
+    font-size: 20px;
+    margin-top: 5px;
+}
+
+#tela-caixa-operacoes > div:nth-child(n) {
+    height: 100%;
+    width: 100%;
+    display: flex;
+}
+
+#tela-caixa-operacoes > div:nth-child(n) > div:nth-child(1) {
+    height: 100%;
+    width: 50%;
+}
+
+#tela-caixa-operacoes > div:nth-child(n) > div:nth-child(2) {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    padding-top: 27px;
+    gap: 20px;
+}
+
+#tela-caixa-operacoes > div:nth-child(n) > div:nth-child(2) > div:nth-child(n) {
+    width: 90%;
+    height: 30px;
+    border: 1px solid #006e96d2;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#tela-caixa-operacoes > div:nth-child(n) > div:nth-child(2) > div:nth-child(n) > p {
+    font-size: 14px;
+    font-weight: bolder;
+}
+
+/** Tela Saldo & Extratos */
+#tela-caixa-saldo-extrato {
+    width: 98%;
+    height: 98%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+#tela-caixa-saldo-extrato > h1 {
+    font-size: 20px;
+    margin-top: 5px;
+}
+
+#tela-caixa-saldo-extrato > div:nth-child(n) {
+    height: 100%;
+    width: 100%;
+    display: flex;
+}
+
+#tela-caixa-saldo-extrato > div:nth-child(n) > div:nth-child(1) {
+    height: 100%;
+    width: 50%;
+}
+
+#tela-caixa-saldo-extrato > div:nth-child(n) > div:nth-child(2) {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    padding-top: 27px;
+    gap: 20px;
+}
+
+#tela-caixa-saldo-extrato > div:nth-child(n) > div:nth-child(2) > div:nth-child(n) {
+    width: 90%;
+    height: 30px;
+    border: 1px solid #006e96d2;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#tela-caixa-saldo-extrato > div:nth-child(n) > div:nth-child(2) > div:nth-child(n) > p {
+    font-size: 14px;
+    font-weight: bolder;
+}
+
+
+
+
