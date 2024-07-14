@@ -1,24 +1,38 @@
 (function() {
     const configuracoesCaixa = {
-        tela: 'telaInicial',
-        clientePrincipal: {titular: 'Usuario Silva', senha: '6789', saldo: '1.000,00'},
-        dadosContas: [
-            {agencia: '001-1', conta: '12345-0', titular: 'Francisco Junior', saldo: '1.000,00'},
-            {agencia: '001-1', conta: '67890-0', titular: 'Maria de Fatima', saldo: '1.000,00'},
-            {agencia: '001-1', conta: '54321-0', titular: 'Isaac Netero', saldo: '1.000,00'}
-        ]
+        tela: '/',
+        telaAnterior: '',
+        autenticado: false,
+        btnPressionado: '',
+        btnPressionadoAnterior: ''
     };
 
-    function renderizarTela(tela = '') {
-        const $telaCaixa = document.querySelector('#tela-caixa');
+    const contaPrincipal = {titular: 'Joao Cliente Principal', agencia: '0001-1', conta: '9090-1', saldo: '500,00', senha: '8990'};
 
-        if(tela === '' & configuracoesCaixa.tela === 'telaInicial') {
-            $telaCaixa.innerHTML = `<div id="tela-caixa-vazia">
-                                        <p>CAIXA ELETRÔNICO</p>
-                                        <P>JAVASCRIPT</P>
-                                    </div>`;
+    const dadosContas = [
+        {titular: 'Jose Stark Silva', agencia: '0001-1', conta: '0012-1', saldo: '100,00'},
+        {titular: 'Maria Silva Sauro', agencia: '0001-1', conta: '1234-1', saldo: '200,00'},
+        {titular: 'Robert Medeiros', agencia: '0001-1', conta: '3489-1', saldo: '300,00'}
+    ];
+
+    //Evitar iteração do usuario com o tecado
+    document.addEventListener('keydown', (e) => {
+        e.preventDefault();
+    });
+
+    function renderizarTela(tela = '') {
+        const $telas = document.querySelectorAll('.telas');
+
+        $telas.forEach((elementeTela) => {
+            elementeTela.style.display = 'none';
+        });
+
+        if(tela === '' & configuracoesCaixa.tela === '/') {
+            const $telaCaixaVazia = document.querySelector('#tela-caixa-vazia');
+
+            $telaCaixaVazia.style.display = 'block';
         }else {
-            $telaCaixa.innerHTML = tela;
+            tela.style.display = 'block';
         }
     }
 
@@ -27,112 +41,155 @@
     
         $btns.forEach(($btn) => {
             $btn.addEventListener('click', (event) => {
+
                 if(event.target.innerHTML === '.') {
                     return;
                 }
-
-                identificaOperacoesCaixa(event.target.innerHTML);
+                
+                configuracoesCaixa.btnPressionado = event.target.innerHTML;
+                processarOperacoes();
             });
         });
     }
 
-    function identificaOperacoesCaixa(btnPressionado) {
+    function processarOperacoes() {
+        const listaBtnsFunc = ['func1', 'func2', 'func3', 'func4', 'func5', 'func6', 'func7', 'func8'];
+        const listaBtnsEspeciais = ['ENTER', 'CLEAR', 'CANCEL'];
 
-        switch (configuracoesCaixa.tela) {
-            case 'telaInicial':
+            switch (configuracoesCaixa.tela) {
+                case '/':
+                    //Navega para tela de Operaçoes
+                    if(listaBtnsFunc.indexOf(configuracoesCaixa.btnPressionado) > -1) {
+                        const $tela = document.querySelector('#tela-caixa-operacoes');
+
+                        configuracoesCaixa.tela = '/operacoes';
+                        renderizarTela($tela);
+                    }
+                    break;
                 
-                //Navega para tela de Operações
-                if(btnPressionado === 'func1' || btnPressionado === 'func2' || btnPressionado === 'func3' || btnPressionado === 'func4' || 
-                    btnPressionado === 'func5' || btnPressionado === 'func6' || btnPressionado === 'func7' || btnPressionado === 'func8') {
+                case '/operacoes':
+                    //Navega para tela de Saldos & Extratos
+                    if(configuracoesCaixa.btnPressionado === 'func5') {
+                        const $tela = document.querySelector('#tela-caixa-saldo-extrato');
 
-                    const tela = `<div id="tela-caixa-operacoes">
-                                        <h1>TELA DE OPERAÇÕES</h1>
+                        configuracoesCaixa.tela = '/operacoes/saldoExtrato';
+                        renderizarTela($tela);
+                    }
+                    //Cancela tela Operaçoes
+                    if(configuracoesCaixa.btnPressionado === 'CANCEL') {
+                        configuracoesCaixa.telaAnterior = '';
+                        configuracoesCaixa.btnPressionadoAnterior = '';
+                        configuracoesCaixa.autenticado = false;
+                        configuracoesCaixa.tela = '/';
+                        renderizarTela();
+                    }
+                    break;
 
-                                        <div>
-                                            <div></div>
+                case '/operacoes/saldoExtrato':
+                    //Navega para tela de Saldo
+                    if(configuracoesCaixa.btnPressionado === 'func5') {
+                        if(!configuracoesCaixa.autenticado) {
+                            configuracoesCaixa.telaAnterior = '/operacoes/saldoExtrato';
+                            configuracoesCaixa.btnPressionadoAnterior = 'func5';
 
-                                            <div>
-                                                <div><p>SALDO & EXTRATO</p></div>
-                                                <div><p>DEPÓSITOS</p></div>
-                                                <div><p>TRANSFERÊNCIAS</p></div>
-                                                <div><p>SAQUES</p></div>
-                                            </div>
-                                        </div>
-                                    </div>`;
-            
-                    renderizarTela(tela);
-                    configuracoesCaixa.tela = 'telaDeOperacoes';
-                }
+                            const $tela = document.querySelector('#tela-senha');
+                            const $inputTelaSenha = document.querySelector('#inputTelaSenha');
+                                            
+                            configuracoesCaixa.tela = '/senha';
+                            renderizarTela($tela);
+                            $inputTelaSenha.focus();
+                        }else {
+                            const $tela = document.querySelector('#tela-saldo');
+                            const $saldoData = document.querySelector('#saldo-data');
+                            const $saldoAgencia = document.querySelector('#saldo-agencia');
+                            const $saldoConta = document.querySelector('#saldo-conta');
+                            const $saldoTitular = document.querySelector('#saldo-titular');
+                            const $saldoAtual = document.querySelector('#saldo-saldo-atual');
 
-                break;
+                            $saldoData.innerHTML = new Date(Date.now()).toLocaleString().split(',')[0];
+                            $saldoAgencia.innerHTML = contaPrincipal.agencia;
+                            $saldoConta.innerHTML = contaPrincipal.conta;
+                            $saldoTitular.innerHTML = contaPrincipal.titular;
+                            $saldoAtual.innerHTML = `R$ ${contaPrincipal.saldo}`;
 
-            case 'telaDeOperacoes':
+                            configuracoesCaixa.tela = '/operacoes/saldoExtrato/saldo';
+                            renderizarTela($tela);
+                        }
+                    }
+                    break;
 
-                //Navega para tela de Saldo & Extrato
-                if(btnPressionado === 'func5') {
-                    const tela = `<div id="tela-caixa-saldo-extrato">
-                                        <h1>SALDO & EXTRATO</h1>
+                case '/operacoes/saldoExtrato/saldo':
+                    //Retornar a Tela Saldo e Estrato
+                    if(configuracoesCaixa.btnPressionado === 'func4') {
+                        const $tela = document.querySelector('#tela-caixa-saldo-extrato');
+                        const $inputTelaSenha = document.querySelector('#inputTelaSenha');
+                        const $smallErroSenha = document.querySelector('#small-erro-senha');
 
-                                        <div>
-                                            <div></div>
+                        $inputTelaSenha.value = ''
+                        configuracoesCaixa.telaAnterior = '';
+                        configuracoesCaixa.btnPressionadoAnterior = '';
+                        $smallErroSenha.innerHTML = '';
+                        configuracoesCaixa.autenticado = false;
+                        configuracoesCaixa.tela = '/operacoes/saldoExtrato';
+                        renderizarTela($tela);
+                    }
+                    break;
 
-                                            <div>
-                                                <div><p>SALDO</p></div>
-                                                <div><p>EXTRATO</p></div>
-                                            </div>
-                                        </div>
-                                    </div>`;
-            
-                    renderizarTela(tela);
-                    configuracoesCaixa.tela = 'telaSaldoExtrato';
-                }
+                case '/senha':
+                    const $inputTelaSenha = document.querySelector('#inputTelaSenha');
+                    const $smallErroSenha = document.querySelector('#small-erro-senha');
 
-                //Navega para tela de Depositos
-                if(btnPressionado === 'func6') {
-                    console.log('tela de depositos');
-                }
+                    if(listaBtnsFunc.indexOf(configuracoesCaixa.btnPressionado) <= -1) {
+                        $inputTelaSenha.focus();
 
-                //Navega para tela de Transferencias
-                if(btnPressionado === 'func7') {
-                    console.log('tela de transferencias');
-                }
+                        if(listaBtnsEspeciais.indexOf(configuracoesCaixa.btnPressionado) <= -1) {
+                            $inputTelaSenha.value += $inputTelaSenha.value.length < 4 ? configuracoesCaixa.btnPressionado : '';
+                        }else {
+                            if(configuracoesCaixa.btnPressionado === 'ENTER') {
+                                if($inputTelaSenha.value.length === 4) {  
+                                    
+                                    if(autenticaSenha($inputTelaSenha.value)) {
+                                        configuracoesCaixa.tela = configuracoesCaixa.telaAnterior;
+                                        document.querySelectorAll('button')[listaBtnsFunc.indexOf(configuracoesCaixa.btnPressionadoAnterior)].click();
+                                    }else {
+                                        $smallErroSenha.innerHTML = 'SENHA INCORRETA';
+                                    }
+                                }
+                            }
 
-                //Navega para tela de Saques
-                if(btnPressionado === 'func8') {
-                    console.log('tela de saques');
-                }
+                            if(configuracoesCaixa.btnPressionado === 'CLEAR') {
+                                $inputTelaSenha.value.length > 0 ? $inputTelaSenha.value = '' : '';
+                                $smallErroSenha.innerHTML = '';
+                            }
 
-                //Sair da Tela de Operações e Voltar para Tela Inicial
-                if(btnPressionado === 'CANCEL') {
-                    configuracoesCaixa.tela = 'telaInicial';
-                    renderizarTela();
-                }
+                            if(configuracoesCaixa.btnPressionado === 'CANCEL') {
+                                $inputTelaSenha.value = '';
+                                configuracoesCaixa.telaAnterior = '';
+                                configuracoesCaixa.btnPressionadoAnterior = '';
+                                $smallErroSenha.innerHTML = '';
+                                configuracoesCaixa.autenticado = false;
+                                configuracoesCaixa.tela = '/';
+                                renderizarTela();
+                            }
+                        }
+                    }else {
+                        $inputTelaSenha.focus();
+                    }
+                    break;
 
-                break;
+                default:
+                    break;
+            }
+    }
 
-            case 'telaSaldoExtrato':
+    function autenticaSenha(senha) {
+        if(senha === contaPrincipal.senha) {
+            configuracoesCaixa.autenticado = true;
 
-                //Navega para tela de Saldos
-                if(btnPressionado === 'func5') {
-                    console.log('tela de saldos');
-                }
-
-                //Navega para tela de Extrato
-                if(btnPressionado === 'func6') {
-                    console.log('tela de extratos');
-                }
-
-                //Sair da Tela de Saldo & Extrato e Voltar para Tela Inicial
-                if(btnPressionado === 'CANCEL') {
-                    configuracoesCaixa.tela = 'telaInicial';
-                    renderizarTela();
-                }
-
-                break;
-        
-            default:
-                break;
+            return true;
         }
+
+        return false;
     }
 
     renderizarTela();
