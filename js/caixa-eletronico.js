@@ -7,11 +7,11 @@
         { titular: 'Marcos Almeida', agencia: '0033', conta: '0125-0', saldo: '300,00' }
     ];
 
-    function consultarSaldo() {
+    function saldo() {
         return `R$ ${contaPrincipal.saldo}`;
     }
 
-    function consultarExtrato() {
+    function extrato() {
         return {
             dataExtrato: retornaDataHoraAtual().data,
             horaExtrato: retornaDataHoraAtual().hora,
@@ -21,6 +21,36 @@
             saldoAtual: contaPrincipal.saldo,
             historico: contaPrincipal.historico
         };
+    }
+
+    function buscarConta(agencia, conta) {
+        if(contaPrincipal.agencia !== agencia & listaContas.findIndex((con) => con.agencia === agencia) === -1) {
+            console.log('agencia não localizada');
+            return;
+        }
+        
+        if(contaPrincipal.conta !== conta & listaContas.findIndex((con) => con.conta === conta) === -1) {
+            console.log('conta não localizada');
+            return;
+        }
+
+        const indexContaSelecionada = listaContas.findIndex((con) => con.agencia === agencia & con.conta === conta);
+
+        if (indexContaSelecionada === -1) {
+            return { 
+                index: indexContaSelecionada,
+                titular: contaPrincipal.titular, 
+                agencia: contaPrincipal.agencia, 
+                conta: contaPrincipal.conta 
+            };
+        }else {
+            return { 
+                index: indexContaSelecionada,
+                titular: listaContas[indexContaSelecionada].titular, 
+                agencia: listaContas[indexContaSelecionada].agencia, 
+                conta: listaContas[indexContaSelecionada].conta 
+            };
+        }
     }
     
     //Funções auxiliares
@@ -34,7 +64,8 @@
     }
 
     window.caixaEletronico = {
-        consultarSaldo,
-        consultarExtrato
+        saldo,
+        extrato,
+        buscarConta
     };
 })();
