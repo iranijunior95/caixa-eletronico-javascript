@@ -1,6 +1,31 @@
-console.table(caixaEletronico.retornaListaDeContas());
+(function() {
+    const $tbodyConteudoInfo = document.querySelector('#tbodyConteudoInfo');
 
-console.log(caixaEletronico.transferir(0, '10.50'));
+    function renderizarListaDadosContas() {
+        const dadosContas = caixaEletronico.retornaListaDeContas();
+        let lista = ``;
 
-console.table(caixaEletronico.retornaListaDeContas());
+        lista += `<tr>
+                    <td>${dadosContas.contaPrincipal.titular}</td>
+                    <td>${dadosContas.contaPrincipal.agencia}</td>
+                    <td>${dadosContas.contaPrincipal.conta}</td>
+                    <td>R$ ${dadosContas.contaPrincipal.saldo}</td>
+                </tr>`;
+
+        dadosContas.listaContas.forEach(conta => {
+            lista += `<tr>
+                        <td>${conta.titular}</td>
+                        <td>${conta.agencia}</td>
+                        <td>${conta.conta}</td>
+                        <td>R$ ${conta.saldo}</td>
+                    </tr>`;
+        });
+
+        $tbodyConteudoInfo.innerHTML = lista;
+    }
+
+    renderizarListaDadosContas();
+})();
+
+
 

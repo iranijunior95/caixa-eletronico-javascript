@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", system-ui;
+    font-style: normal;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+}
+
+.container {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.content-caixa {
+    height: 100%;
+    width: 70%;
+    border-right: 1px solid #5a5b5d;
+    background-color: #3b84a4;
+}
+
+.content-info {
+    height: 100%;
+    width: 30%;
+    background-color: #a0bbc6;
+    padding-top: 10px;
+    color: #131514da;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+}
+
+#tela-info {
+    height: 60vh;
+    width: 95%;
+    padding: 3px;
+    background-color:#f1f0f0;
+    border-radius: 5px;
+    border: 1px solid #5a5b5d;
+    overflow:auto;
+}
+
+#tela-info::-webkit-scrollbar {
+    width: 7px;       
+}
+  
+#tela-info::-webkit-scrollbar-track {
+    background: #FFFFFF;
+}
+  
+#tela-info::-webkit-scrollbar-thumb {
+    background-color: #5a5b5d;    
+    border-radius: 5px;      
+    cursor: pointer;
+}
+
+#tela-dados {
+    height: 30vh;
+    width: 95%;
+    padding: 3px;
+    background-color:#f1f0f0;
+    border-radius: 5px;
+    border: 1px solid #5a5b5d;
+}
+
+.conteudo-info > table {
+    width: 100%;
+}
+
+.conteudo-info > table thead th {
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 2px;
+}
+
+.conteudo-info > table tbody td {
+    font-size: 0.8rem;
+    padding: 2px;
+    border-bottom: 1px solid #5a5b5d11;
+}
+
+.titulo {
+    color: #131514;
+    text-align: center;
+    text-shadow: 0.1em 0.1em 0.05em #f1f0f0;
+}
+
+.cabecalho-info {
+    width: 100%;
+    text-align: center;
+}

@@ -24,7 +24,10 @@
     }
 
     function retornaListaDeContas() {
-        return listaContas;
+        return {
+            contaPrincipal: contaPrincipal,
+            listaContas: listaContas
+        };
     }
 
     function buscarConta(agencia, conta) {

@@ -4,8 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Caixa Eletrônico - JS</title>
+
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
+    <div class="container">
+        <div class="content-caixa"></div>
+
+        <div class="content-info">
+            <h3 class="titulo">INFORMAÇÔES</h3>
+            <div id="tela-info">
+                <div class="cabecalho-info">
+                    <h4>Extrato Conta Principal</h4>
+                    <hr>
+                </div>
+            </div>
+
+            <div id="tela-dados">
+                <div class="cabecalho-info">
+                    <h4>Dados Contas</h4>
+                    <hr>
+
+                    <div class="conteudo-info">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Titular</th>
+                                    <th>Ag.</th>
+                                    <th>Cc.</th>
+                                    <th>Saldo</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbodyConteudoInfo"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     
     <script src="./js/caixa-eletronico.js"></script>
     <script src="./js/script.js"></script>
