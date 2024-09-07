@@ -1,10 +1,10 @@
 (function() {
-    const contaPrincipal = { titular: 'Usuario Pessoa', agencia: '0033', conta: '0122-0', senha: '12345', saldo: '500,00', historico: [] };
+    const contaPrincipal = { titular: 'Usuario Pessoa', agencia: '0033', conta: '0122-0', senha: '1234', saldo: '500.00', historico: [] };
 
     const listaContas = [
-        { titular: 'Jose Antonio', agencia: '0033', conta: '0123-0', saldo: '100,00' },
-        { titular: 'Maria Fernanda', agencia: '0033', conta: '0124-0', saldo: '200,00' },
-        { titular: 'Marcos Almeida', agencia: '0033', conta: '0125-0', saldo: '300,00' }
+        { titular: 'Jose Antonio', agencia: '0033', conta: '0123-0', saldo: '100.00' },
+        { titular: 'Maria Fernanda', agencia: '0033', conta: '0124-0', saldo: '200.00' },
+        { titular: 'Marcos Almeida', agencia: '0033', conta: '0125-0', saldo: '300.00' }
     ];
 
     function saldo() {
@@ -21,6 +21,10 @@
             saldoAtual: contaPrincipal.saldo,
             historico: contaPrincipal.historico
         };
+    }
+
+    function retornaListaDeContas() {
+        return listaContas;
     }
 
     function buscarConta(agencia, conta) {
@@ -41,18 +45,48 @@
                 index: indexContaSelecionada,
                 titular: contaPrincipal.titular, 
                 agencia: contaPrincipal.agencia, 
-                conta: contaPrincipal.conta 
+                conta: contaPrincipal.conta,
+                saldo: contaPrincipal.saldo  
             };
         }else {
             return { 
                 index: indexContaSelecionada,
                 titular: listaContas[indexContaSelecionada].titular, 
                 agencia: listaContas[indexContaSelecionada].agencia, 
-                conta: listaContas[indexContaSelecionada].conta 
+                conta: listaContas[indexContaSelecionada].conta,
+                saldo: listaContas[indexContaSelecionada].saldo  
             };
         }
     }
-    
+
+    function depositar(idConta, valor) {
+        if(valor === '' || valor === undefined || valor === 0 || valor === '0') {
+            console.log('valor invalido');
+            return;
+        }
+
+        if(idConta === -1) {
+            contaPrincipal.saldo = String(parseFloat(contaPrincipal.saldo) + parseFloat(valor));
+        }else {
+            listaContas[idConta].saldo = String(parseFloat(listaContas[idConta].saldo) + parseFloat(valor));
+        }
+
+        return idConta === -1 ? contaPrincipal.saldo : listaContas[idConta].saldo;
+    }
+
+    function transferir(idContaDestino, valor) {
+        if(valor === '' || valor === undefined || valor === 0 || valor === '0') {
+            console.log('valor invalido');
+            return;
+        }
+
+        if(idContaDestino !== -1) {
+            listaContas[idContaDestino].saldo = String(parseFloat(listaContas[idContaDestino].saldo) + parseFloat(valor));
+        }
+
+        return listaContas[idContaDestino].saldo;
+    }
+
     //Funções auxiliares
     function retornaDataHoraAtual() {
         const dataHoraAtual = new Date().toLocaleString();
@@ -66,6 +100,9 @@
     window.caixaEletronico = {
         saldo,
         extrato,
-        buscarConta
+        retornaListaDeContas,
+        buscarConta,
+        depositar,
+        transferir
     };
 })();
