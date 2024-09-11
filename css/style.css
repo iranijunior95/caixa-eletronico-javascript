@@ -25,6 +25,187 @@ body {
     width: 70%;
     border-right: 1px solid #5a5b5d;
     background-color: #3b84a4;
+    padding-top: 10px;
+    color: #131514da;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+}
+
+.corpo-caixa-eletronico {
+    height: 590px;
+    width: 500px;
+    padding: 10px;
+    background-image: radial-gradient(circle, #d8d9db, #c0c1c4, #a9aaad, #939497, #7d7e82);
+    border: 1px solid #8E8F91;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0.1em 0.1em 0.05em #515352;
+    gap: 10px;
+}
+
+#content-tela {
+    height: 300px;
+    width: 100%;
+    background-image: linear-gradient(to right bottom, #003b5d, #004266, #01496f, #005079, #005782);
+    border: 1px solid #071c51;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sessao-tela {
+    height: 280px;
+    width: 74%;
+    background-color: #8cd7f7;
+    border: 10px solid #0d1719;
+    border-radius: 3px;
+}
+
+.sessao-btns {
+    height: 300px;
+    width: 13%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.sessao-btns button {
+    height: 36px;
+    width: 52px;
+    cursor: pointer;
+    border-radius: 3px;
+    background-color: #d8d9db;
+    font-size: 0.0rem;
+    color: transparent;
+}
+
+#content-boca-caixa {
+    height: 90px;
+    width: 80%;
+    background-color: #b4b5b9;
+    border: 2px solid #8d8e90;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#boca-de-caixa {
+    height: 40px;
+    width: 90%;
+    background-color: #005782;
+    border: 2px solid #0b1b57;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#boca-de-caixa div:nth-child(1) {
+    height: 10px;
+    width: 90%;
+    background-color: #0d1719;
+    border-radius: 3px;
+}
+
+#content-teclado {
+    height: 290px;
+    width: 100%;
+    background-color: #002d3f;
+    border: 1px solid #071c51;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+#teclado-borda {
+    height: 100%;
+    width: 100%;
+    background-color: #005782;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#teclado {
+    height: 95%;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-image: radial-gradient(circle, #c9cacc, #bdbfc1, #b2b3b6, #a7a8ac, #9c9da1);
+    border: 1px solid #626d6f;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+#teclado > div:nth-child(1) {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+#teclado > div:nth-child(1) > div:nth-child(n) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+#teclado > div:nth-child(2) {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.btnsNum {
+    height: 34px;
+    width: 50px;
+    cursor: pointer;
+    border-radius: 3px;
+    background-color: #d8d9db;
+    font-size: 1rem;
+    font-weight: 600;
+    transform: scale(1);
+}
+
+#btnRed {
+    background-color: #ef1c23;
+    font-size: 0.0rem;
+    color: transparent;
+}
+
+#btnYellow {
+    background-color: #f9d706;
+    font-size: 0.0rem;
+    color: transparent;
+}
+
+#btnGreen {
+    background-color: #3db44c;
+    font-size: 0.0rem;
+    color: transparent;
+}
+
+.btnsNum:active {
+    transform: scale(0.95);
 }
 
 .content-info {
@@ -93,6 +274,11 @@ body {
     color: #131514;
     text-align: center;
     text-shadow: 0.1em 0.1em 0.05em #f1f0f0;
+}
+
+#titulo {
+    color: #f1f0f0;
+    text-shadow: 0.1em 0.1em 0.05em #131514;
 }
 
 .cabecalho-info {
