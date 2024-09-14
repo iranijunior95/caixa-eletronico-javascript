@@ -1,7 +1,9 @@
 (function() {
     const $btns = document.querySelectorAll('.btns');
+    const $telaCaixa = document.querySelector('#telaCaixaEletronico');
     const $tbodyConteudoInfo = document.querySelector('#tbodyConteudoInfo');
 
+    //Capturar o clique de todos os botões e verificar qual tipo de botão foi clicado
     $btns.forEach(btn => {
         btn.addEventListener('click', function(event) {
             if(event.target.innerHTML !== '') {
@@ -20,6 +22,16 @@
             }
         });
     });
+
+    function renderizarTelaCaixa(tela='') {
+        if(tela === '') {
+            $telaCaixa.innerHTML = `<div class="tela-vazia">
+                                        <p>CAIXA ELETRÔNICO</p> <p>JAVASCRIPT</p>
+                                    </div>`;
+        }else {
+            $telaCaixa.innerHTML = tela;
+        }
+    }
 
     function renderizarListaDadosContas() {
         const dadosContas = caixaEletronico.retornaListaDeContas();
@@ -44,6 +56,7 @@
         $tbodyConteudoInfo.innerHTML = lista;
     }
 
+    renderizarTelaCaixa();
     renderizarListaDadosContas();
 })();
 
