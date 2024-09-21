@@ -64,8 +64,10 @@ body {
     height: 280px;
     width: 74%;
     background-color: #8cd7f7;
+    padding: 3px;
     border: 10px solid #0d1719;
     border-radius: 3px;
+    user-select: none;
 }
 
 /* Inicio sessão de customização de telas */
@@ -78,7 +80,55 @@ body {
     align-items: center;
     font-size: 1.2rem;
     font-weight: 600;
-    color: #0d1719de;
+    color: #002d3f;
+}
+
+.sessao-tela .tela-opcoes {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.sessao-tela .tela-opcoes > div:nth-child(1) {
+    width: 50%;
+    height: 100%;
+}
+
+.sessao-tela .tela-opcoes > div:nth-child(2) {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: end;
+    gap: 41px;
+}
+
+.sessao-tela .tela-opcoes > div:nth-child(2) > div:nth-child(n) {
+    width: 90%;
+    padding: 2px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    background-color: #f1f0f0;
+    border: 1px solid #FFF;
+    border-radius: 5px;
+}
+
+.sessao-tela .tela-opcoes > div:nth-child(2) > div:nth-child(n) > p {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #002d3f;
+    width: 90%;
+    text-align: center;
+}
+
+.sessao-tela .tela-opcoes > div:nth-child(2) > div:nth-child(n) > i {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #002d3f;
+    width: 10%;
+    text-align: center;
 }
 /* Fim sessão de customização de telas */
 

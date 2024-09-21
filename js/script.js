@@ -3,31 +3,76 @@
     const $telaCaixa = document.querySelector('#telaCaixaEletronico');
     const $tbodyConteudoInfo = document.querySelector('#tbodyConteudoInfo');
 
-    //Capturar o clique de todos os botões e verificar qual tipo de botão foi clicado
+    let statusSistema = 'inicio';
+    let opcoesDeTelas = {
+            inicio: `<div class="tela-vazia">
+                        <p>CAIXA ELETRÔNICO</p> <p>JAVASCRIPT</p>
+                    </div>`,
+            
+            operacoes: `<div class="tela-opcoes">
+                        <div></div>
+
+                        <div>
+                            <div>
+                                <p>SALDO</p>
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </div>
+
+                            <div>
+                                <p>EXTRATO</p>
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </div>
+
+                            <div>
+                                <p>DEPÓSITO</p>
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </div>
+
+                            <div>
+                                <p>TRANFERÊNCIA</p>
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </div>
+                        </div>
+                    </div>`
+    };
+
+    //Capturar o clique de todos os botões
     $btns.forEach(btn => {
         btn.addEventListener('click', function(event) {
+
             if(event.target.innerHTML !== '') {
-
-                if(Number.isInteger(Number(event.target.innerText))) {
-                    console.log(event.target.innerText);
-                }
-                
-                if(event.target.innerText === 'enter' || event.target.innerText === 'cancel' || event.target.innerText === 'clean') {
-                    console.log(event.target.innerText);
-                }
-
-                if(event.target.innerText.match(/func/)) {
-                    console.log(event.target.innerText);
-                }
+                validaOperacoes(event.target.innerText);
             }
+
         });
     });
 
-    function renderizarTelaCaixa(tela='') {
+    function validaOperacoes(func) {
+        switch (statusSistema) {
+            case 'inicio':
+                if(func === 'func1' || func === 'func2' || func === 'func3' || func === 'func4' ||
+                    func === 'func5' || func === 'func6' || func === 'func7' || func === 'func8') {
+                
+                        statusSistema = 'operacoes';
+                        renderizarTelaCaixa(opcoesDeTelas.operacoes);
+                }
+                break;
+
+            case 'operacoes': 
+                if(func === 'cancel') {
+                    statusSistema = 'inicio';
+                    renderizarTelaCaixa(opcoesDeTelas.inicio);
+                }
+                break;
+        
+            default:
+                break;
+        }
+    }
+
+    function renderizarTelaCaixa(tela = '') {
         if(tela === '') {
-            $telaCaixa.innerHTML = `<div class="tela-vazia">
-                                        <p>CAIXA ELETRÔNICO</p> <p>JAVASCRIPT</p>
-                                    </div>`;
+            $telaCaixa.innerHTML = opcoesDeTelas.inicio;
         }else {
             $telaCaixa.innerHTML = tela;
         }
