@@ -1,14 +1,20 @@
 (function() {
-    const contaPrincipal = { titular: 'Usuario Pessoa', agencia: '0033', conta: '0122-0', senha: '1234', saldo: '500.00', historico: [] };
+    const contaPrincipal = { titular: 'Usuario Pessoa', agencia: '0033', conta: '0122-0', senha: '1234', saldo: 500.00, historico: [] };
 
     const listaContas = [
-        { titular: 'Jose Antonio', agencia: '0033', conta: '0123-0', saldo: '100.00' },
-        { titular: 'Maria Fernanda', agencia: '0033', conta: '0124-0', saldo: '200.00' },
-        { titular: 'Marcos Almeida', agencia: '0033', conta: '0125-0', saldo: '300.00' }
+        { titular: 'Jose Antonio', agencia: '0033', conta: '0123-0', saldo: 100.00 },
+        { titular: 'Maria Fernanda', agencia: '0033', conta: '0124-0', saldo: 200.00 },
+        { titular: 'Marcos Almeida', agencia: '0033', conta: '0125-0', saldo: 300.00 }
     ];
 
     function saldo() {
-        return `R$ ${contaPrincipal.saldo}`;
+        return {
+            titular: contaPrincipal.titular,
+            agencia: contaPrincipal.agencia,
+            conta: contaPrincipal.conta,
+            saldo: `R$ ${contaPrincipal.saldo.toLocaleString('pt-br', {minimumFractionDigits: 2})}`,
+            dataHora: retornaDataHoraAtual()
+        };
     }
 
     function extrato() {
